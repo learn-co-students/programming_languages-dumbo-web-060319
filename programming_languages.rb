@@ -6,12 +6,15 @@ def reformat_languages(languages)
 
       bundle.each do |language, language_type| 
 
-        puts "style: #{style} | lang: #{language} | type: #{language_type}"
-        reformed_languages[language] = {:type => language_type[:type], :style => []}
-        reformed_languages[language][:style].push(style)
+        if reformed_languages.has_key?(language)
+          reformed_languages[language][:style].push(style)
+        else
+          reformed_languages[language] = {:type => language_type[:type], :style => []}
+          reformed_languages[language][:style].push(style)
+        end
 
       end
 
   end
-  puts "reformed: #{reformed_languages}"
+  reformed_languages
 end
